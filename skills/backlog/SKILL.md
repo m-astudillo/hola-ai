@@ -1,6 +1,6 @@
 ---
 name: backlog
-description: Turns a software idea or a discussed feature into a backlog of short, vertical user stories. No acceptance criteria or implementation; that's /story's job.
+description: Turns a software idea or a discussed feature into a backlog of short, vertical user stories, written to hola/ as one file per story (State: proposed). No acceptance criteria or implementation; that's /story's job.
 disable-model-invocation: true
 ---
 
@@ -28,19 +28,23 @@ Your job is to help me split what I tell you into user stories. I bring the requ
 - **One line per story.** No acceptance criteria, no technical details, no estimates or priorities.
 - The first story is the smallest one usable end to end (walking skeleton).
 
-## Output format
+## Files
+
+When I approve the backlog, write it to `hola/` — one file per story:
+
+- `hola/context.md` — the context (one or two lines), the stack, the expensive decisions.
+- `hola/stories/NN-slug.md` — one per story, numbered from 01 in order:
 
 ```markdown
-## Context
-<one or two lines: what it is and who it's for>
-Stack: <what we agreed>
-Expensive decisions: <the ones that apply, or "none">
+# 01 — As a <actor>, I want <action>, so that <benefit>.
 
-## Backlog
-1. As a <actor>, I want <action>, so that <benefit>.
-2. As a <actor>, I want <action>, so that <benefit>. Requires: #1
+State: proposed
+
+Requires: —
 ```
 
-Add `Requires: #N` only when a story makes no sense without another.
+Add `Requires: NN` (instead of `—`) only when a story makes no sense without another.
 
-When done, offer to save the context and stack in `CLAUDE.md` (or `AGENTS.md`). The stories go to my tracker; don't save them to files unless I ask.
+If `hola/` already exists, keep it: append new stories with the next numbers, and don't touch existing files.
+
+When done, suggest one line in `CLAUDE.md` (or `AGENTS.md`) pointing to the workflow in `hola/`.
