@@ -1,6 +1,6 @@
 ---
 name: flow
-description: Moves a story's State in hola/ — to done (after verifying tasks and manual criteria) or backward. The skill that gates done and undoes progress.
+description: "Moves a story's State in hola/ — to done (after verifying tasks and manual criteria) or backward. The skill that gates done and undoes progress."
 disable-model-invocation: true
 ---
 

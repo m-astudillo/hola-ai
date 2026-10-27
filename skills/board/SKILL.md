@@ -1,6 +1,6 @@
 ---
 name: board
-description: Shows the hola/ board: every story with its state (proposed, refined, building, done), task progress, and the one next command to run. Read-only; it never writes a file.
+description: "Shows the hola/ board: every story with its state (proposed, refined, building, done), task progress, and the one next command to run. Read-only; it never writes a file."
 disable-model-invocation: true
 ---
 

@@ -1,6 +1,6 @@
 ---
 name: story
-description: Refines ONE story from hola/stories/: 2-3 acceptance criteria and a mini implementation plan for approval, written into the story file (State: refined). If it needs more than 3 criteria, proposes splitting it. Writes no code; implementation is /pair's job.
+description: "Refines ONE story from hola/stories/: 2-3 acceptance criteria and a mini implementation plan for approval, written into the story file (State: refined). If it needs more than 3 criteria, proposes splitting it. Writes no code; implementation is /pair's job."
 disable-model-invocation: true
 ---
 

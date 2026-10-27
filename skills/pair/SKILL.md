@@ -1,6 +1,6 @@
 ---
 name: pair
-description: Pair programming with the AI on an already refined story. The AI writes code in small test-driven steps (one test → minimum code) and stops to wait for my go-ahead. The test list and progress live in the story file (## Tasks, State: building); it resumes from the first unchecked task. Never commits.
+description: "Pair programming with the AI on an already refined story. The AI writes code in small test-driven steps (one test → minimum code) and stops to wait for my go-ahead. The test list and progress live in the story file (## Tasks, State: building); it resumes from the first unchecked task. Never commits."
 disable-model-invocation: true
 ---
 

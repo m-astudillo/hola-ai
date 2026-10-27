@@ -1,6 +1,6 @@
 ---
 name: backlog
-description: Turns a software idea or a discussed feature into a backlog of short, vertical user stories, written to hola/ as one file per story (State: proposed). No acceptance criteria or implementation; that's /story's job.
+description: "Turns a software idea or a discussed feature into a backlog of short, vertical user stories, written to hola/ as one file per story (State: proposed). No acceptance criteria or implementation; that's /story's job."
 disable-model-invocation: true
 ---
 
