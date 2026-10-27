@@ -7,17 +7,44 @@ The AI splits, proposes and writes code in small steps. You decide.
 ## The flow
 
 ```
-/backlog  →  /story  →  /pair
-  what       what exactly   how
+/backlog  →  /story  →  /pair  →  /flow done
+  what       what exactly   how      verified, done
+      ↑          ↑          ↑
+      └──────────┴──────────┘
+             /board: the state of everything + the next command
 ```
 
 | Skill | What it does | What it never does |
 |---|---|---|
-| [`/backlog`](skills/backlog/SKILL.md) | Turns an idea into a short backlog of vertical, one-line user stories. | Invent requirements, technical stories, estimates. |
-| [`/story`](skills/story/SKILL.md) | Takes **one** story, adds 2–3 Given/When/Then acceptance criteria and a mini plan (≤5 bullets) for your approval. | Write code. If it needs more than 3 criteria, it proposes splitting the story. |
-| [`/pair`](skills/pair/SKILL.md) | Pair programming: the AI drives, you navigate. One test → red → minimum code → green, then it stops and waits. | Commit, edit tests to make them pass, add things you didn't ask for. |
+| [`/backlog`](skills/backlog/SKILL.md) | Turns an idea into a short backlog of vertical, one-line user stories, written to `hola/` as one file per story. | Invent requirements, technical stories, estimates. |
+| [`/story`](skills/story/SKILL.md) | Takes **one** story, adds 2–3 Given/When/Then acceptance criteria and a mini plan (≤5 bullets) for your approval; writes it into the story file. | Write code. If it needs more than 3 criteria, it proposes splitting the story. |
+| [`/pair`](skills/pair/SKILL.md) | Pair programming: the AI drives, you navigate. One test → red → minimum code → green, then it stops and waits. Progress lives in the story file; it resumes from the first unchecked task. | Commit, edit tests to make them pass, add things you didn't ask for. |
+| [`/flow`](skills/flow/SKILL.md) | Moves a story to `done` after verifying tasks and manual criteria, or moves it backward. | Check boxes itself, refine stories, write code. |
+| [`/board`](skills/board/SKILL.md) | Shows every story's state, task progress, and the single next command to run. | Write to a file. |
 
-Each skill's output is the next one's input, as blocks ready to paste into your tracker.
+## Where the workflow lives
+
+The state lives in your project, in `hola/` — one file per story, and the file grows as the story moves:
+
+```
+hola/
+├── context.md            # what it is, the stack, expensive decisions
+└── stories/
+    └── 01-first-login.md
+```
+
+```markdown
+# 01 — As a customer, I can log in, so that I can save my cart.
+
+State: proposed           ← /backlog writes the file
+                           ← /story appends criteria + plan, sets refined
+                           ← /pair appends ## Tasks, sets building, checks boxes as they go green
+                           ← /flow sets done after verifying
+```
+
+The state has one home: the `State:` line of the story file. Each skill writes only the state it produced; `/board` only reads.
+
+Each skill's output is the next one's input, written into the story file.
 
 ## Principles
 
@@ -38,7 +65,7 @@ cp -r hola-ai/skills/* ~/.claude/skills/        # all projects
 cp -r hola-ai/skills/* <your-project>/.claude/skills/   # one project
 ```
 
-The skills are only invoked manually (`/backlog`, `/story`, `/pair`), never automatically.
+The skills are only invoked manually (`/backlog`, `/story`, `/pair`, `/flow`, `/board`), never automatically.
 
 Or ask your agent to install these skills!
 
