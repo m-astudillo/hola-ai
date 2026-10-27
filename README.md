@@ -17,9 +17,9 @@ The AI splits, proposes and writes code in small steps. You decide.
 | Skill | What it does | What it never does |
 |---|---|---|
 | [`/backlog`](skills/backlog/SKILL.md) | Turns an idea into a short backlog of vertical, one-line user stories, written to `hola/` as one file per story. | Invent requirements, technical stories, estimates. |
-| [`/story`](skills/story/SKILL.md) | Takes **one** story, adds 2–3 Given/When/Then acceptance criteria and a mini plan (≤5 bullets) for your approval; writes it into the story file. | Write code. If it needs more than 3 criteria, it proposes splitting the story. |
+| [`/story`](skills/story/SKILL.md) | Takes **one** story, adds 2–3 Given/When/Then acceptance criteria, a mini plan (≤5 bullets) and an explicit "Out of scope", all for your approval; writes it into the story file. | Write code. If it needs more than 3 criteria, it proposes splitting the story. |
 | [`/pair`](skills/pair/SKILL.md) | Pair programming: the AI drives, you navigate. One test → red → minimum code → green, then it stops and waits. Progress lives in the story file; it resumes from the first unchecked task. | Commit, edit tests to make them pass, add things you didn't ask for. |
-| [`/flow`](skills/flow/SKILL.md) | Moves a story to `done` after verifying tasks and manual criteria, or moves it backward. | Check boxes itself, refine stories, write code. |
+| [`/flow`](skills/flow/SKILL.md) | Moves a story to `done` after verifying tasks, manual criteria and the code review (or its deliberate skip), or moves it backward. | Check boxes itself, refine stories, write code. |
 | [`/board`](skills/board/SKILL.md) | Shows every story's state, task progress, and the single next command to run. | Write to a file. |
 
 ## Where the workflow lives
@@ -37,12 +37,14 @@ hola/
 # 01 — As a customer, I can log in, so that I can save my cart.
 
 State: proposed           ← /backlog writes the file
-                           ← /story appends criteria + plan, sets refined
+                           ← /story appends criteria + plan + out of scope, sets refined
                            ← /pair appends ## Tasks, sets building, checks boxes as they go green
                            ← /flow sets done after verifying
 ```
 
 The state has one home: the `State:` line of the story file. Each skill writes only the state it produced; `/board` only reads.
+
+A story that can't be refined whole becomes `State: split` and is replaced by its parts (next numbers). A story may declare `Requires: NN`; `/board` never suggests a story whose requirements are not all `done`.
 
 Each skill's output is the next one's input, written into the story file.
 
